@@ -24,3 +24,13 @@ def login_required(f):
 @app.route('/')
 def home():
 	return render_template('index.html')
+
+
+@app.route('/welcome')
+@login_required
+def welcome():
+	g.db = connect_db()
+	cur = g.db.execute('select * from shoescatalog')
+	shoes = [dict(name=row[0], description=row[1], model=row[2] , image=row[3]) for row in cur.fetchall()]
+	g.db.close()
+	return render_template('welcome.html', shoes = shoes)
