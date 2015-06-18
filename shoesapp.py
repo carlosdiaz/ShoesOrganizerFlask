@@ -47,3 +47,11 @@ def login():
 			flash('Has iniciado sesion')
 			return redirect(url_for('welcome'))
 	return render_template('login.html', error=error)
+
+
+@app.route('/logout')
+@login_required
+def logout():
+	session.pop('logged_in', None)
+	flash('Has cerrado la sesion')
+	return redirect(url_for('home'))
