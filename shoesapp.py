@@ -55,3 +55,8 @@ def logout():
 	session.pop('logged_in', None)
 	flash('Has cerrado la sesion')
 	return redirect(url_for('home'))
+
+
+def connect_db():
+	return sqlite3.connect(app.database)
+
