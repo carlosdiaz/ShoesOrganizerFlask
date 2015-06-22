@@ -60,3 +60,6 @@ def logout():
 def connect_db():
 	return sqlite3.connect(app.database)
 
+
+if __name__== '__main__':
+	app.run(debug=True)
